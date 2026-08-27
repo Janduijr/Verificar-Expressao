@@ -1,20 +1,48 @@
-a = 'a + (b, {[a * b], (a + b)}, a + {b - [c * d}'
+a = ' (a + b), {[a * (b + c)]}, a + {b - [c * d]}'
 list = []
-abre = 0
-fecha = 0
+invalido = False
 
 for x in a:
-    if x in ['}',')',']']:
-        fecha += 1
-        list.insert(0, x)
+    if x in ['{','[','(']:
+        list.append(x)
+    if x == ')':
+        if len(list) > 0:
+            if '(' == list[-1]:
+                del list[-1]
+            else:
+                invalido = True  
+                break
+        else:
+            invalido = True
+            break
+    elif x == ']':
+        if len(list) > 0:
+            if '[' == list[-1]:
+                del list[-1]
+            else:
+                invalido = True 
+                break
+        else:
+            invalido = True
+            break
+    elif x == '}':
+        if len(list) > 0:
+            if '{' == list[-1]:
+                del list[-1]
+            else:
+                invalido = True 
+                break
+        else:
+            invalido = True
+            break
 
-for x in a:
-    if x in ['{','(','[']:
-        abre += 1
-        list.insert(0, x)
-
-print(list)
-if abre == fecha:
-    print('TUDO OK!')
+if invalido is False:
+    if len(list) != 0:
+        print('NAO ESTA BALANCEADO!')
+    else:
+        print('ESTA BALANCEADO!')
 else:
     print('NAO ESTA BALANCEADO!')
+
+
+
