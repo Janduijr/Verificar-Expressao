@@ -6,30 +6,24 @@ def verifica(x):
                 del list[-1]
             else:
                 invalido = True  
-                return
         else:
             invalido = True
-            return
     elif x == ']':
         if len(list) > 0:
             if '[' == list[-1]:
                 del list[-1]
             else:
                 invalido = True 
-                return
         else:
             invalido = True
-            return
     elif x == '}':
         if len(list) > 0:
             if '{' == list[-1]:
                 del list[-1]
             else:
                 invalido = True 
-                return
         else:
             invalido = True
-            return
     
 a = '(a + b), {[a * (b + c)]}, a + {b - [c * d]}'
 list = []
